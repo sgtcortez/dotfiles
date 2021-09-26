@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# To use this command, ensure that you have acpi and AWK installed 
+# To use this command, ensure that you have acpi, notify-send and AWK installed 
 
 # Default time to check for battery status
 TIME_S=180
