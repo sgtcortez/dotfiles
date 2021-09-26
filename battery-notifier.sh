@@ -23,14 +23,14 @@ case $opt in
 esac
 done
 
-echo "Battery Notify running ... Check time: ${TIME_S}, send alert when battery is below: ${NOTIFY_WHEN} ..."
+echo "Battery Notify running ... Check time: ${TIME_S}, send alert when battery is below: ${NOTIFY_WHEN}% ..."
 
 while true 
 do 
 # ACPI will return something like: time%. so time%+0 will become just time
 remaining_time=`acpi -b | awk -v FS=, ' { print $2+0 } '`
 if [ $remaining_time -lt $NOTIFY_WHEN ]; then
-    notify-send --urgency=CRITICAL "Battery is dying ..." "Your battery is below: ${NOTIFY_WHEN}, you should put your laptot on a charger ..."
+    notify-send --urgency=CRITICAL "Battery is dying ..." "Your battery has ${remaining_time}% of remaining time before dead. Which is below the defined: ${NOTIFY_WHEN}%, you should put your laptot on a charger ..."
 fi
 sleep $TIME_S
 done
