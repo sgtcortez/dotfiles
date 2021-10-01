@@ -8,7 +8,7 @@ TIME_S=180
 # Default battery energy to check if battery is below this
 NOTIFY_WHEN=15
 
-while getopts "t:n:" opt; do
+while getopts "ht:n:" opt; do
 case $opt in
     t)
         TIME_S=$OPTARG
@@ -16,6 +16,10 @@ case $opt in
     n)
         NOTIFY_WHEN=$OPTARG
     ;;
+    h)
+	echo "Usage: ${1} [-t <time>] [-n <battery-limit> ] "
+        exit 0 
+    ;;	    
     \?)
         echo "Invalid option: -$OPTARG" >&2
         exit 1
