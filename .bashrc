@@ -35,7 +35,7 @@ function git_content {
 # Just add the SSH environment variables and then add the default ssh key to the bash session
 function load_ssh_key {
   # Eval will evaluate the stdout of ssh-agent(will create the SSH environment variables
-  eval $(ssh-agent)
+  eval $(ssh-agent) 1>/dev/null
 
   # Adds the default key to the bash session
   ssh-add
