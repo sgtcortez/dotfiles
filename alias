@@ -4,3 +4,4 @@ git config --global alias.edit-commit 'commit --amend  --date=now'
 git config --global alias.unstage 'reset HEAD --'
 git config --global alias.graph-history  "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 git config --global alias.delete-obsolete '! git fetch origin --prune && git branch --merged | grep --invert-match -e "staging"  -e "master" | xargs git branch -d 2>/dev/null'
+git config --global alias.rebase-reset-date 'rebase -i --reset-author-date'
