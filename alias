@@ -5,3 +5,6 @@ git config --global alias.unstage 'reset HEAD --'
 git config --global alias.graph-history  "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 git config --global alias.delete-obsolete '! git fetch origin --prune && git branch --merged | grep --invert-match -e "staging"  -e "master" | xargs git branch -d 2>/dev/null'
 git config --global alias.rebase-reset-date 'rebase -i --reset-author-date'
+git config --global alias.last10-commits 'log --oneline --max-count=10'
+git config --global alias.last20-commits 'log --oneline --max-count=20'
+
