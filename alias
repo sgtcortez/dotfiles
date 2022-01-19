@@ -7,4 +7,5 @@ git config --global alias.delete-obsolete '! git fetch origin --prune && git bra
 git config --global alias.rebase-reset-date 'rebase -i --reset-author-date'
 git config --global alias.last10-commits 'log --oneline --max-count=10'
 git config --global alias.last20-commits 'log --oneline --max-count=20'
+git config --global alias.remove-from-commit 'reset HEAD~ --'
 
