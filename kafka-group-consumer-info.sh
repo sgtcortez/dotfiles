@@ -8,5 +8,5 @@ echo "Servers: ${KAFKA_ENVIRONMENTS}"
 
 echo "--------------------------------------"
 
-str="./kafka-consumer-groups.sh --group ${KAFKA_CONSUMER_GROUP} --bootstrap-server ${KAFKA_ENVIRONMENTS} --describe | awk ' { if(NR>2) printf(\"Lag: %10s, Producer Offset: %10s, Topic: %s\n\", \$6, \$5, \$2) }'"
+str="./kafka-consumer-groups.sh --group ${KAFKA_CONSUMER_GROUP} --bootstrap-server ${KAFKA_ENVIRONMENTS} --describe | awk ' { if(NR>2) printf(\"Lag: %10s, Producer Offset: %10s, Partition: %2s Topic: %s\n\", \$6, \$5, \$3, \$2) }'"
 eval $str
