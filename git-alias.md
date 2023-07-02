@@ -57,3 +57,12 @@
     Example:  
 
     - `git uncommit-file directory/file.txt`
+
+ - Show files changed from last commit
+
+   ```shell
+   git config --global alias.last-commit-files 'show HEAD --name-only'
+   ```
+
+   Example:
+   `git last-commit-files`
