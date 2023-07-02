@@ -66,3 +66,12 @@
 
    Example:
    `git last-commit-files`
+
+ - Show unstaged files changed
+
+   ```shell
+   git config --global alias.files-changed 'diff --name-only'
+   ```
+
+   Example:
+   `git files-changed`
