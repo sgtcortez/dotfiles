@@ -92,4 +92,10 @@
 
   Example: Comparing our branch with develop branch, but showing the diff of just one file
   `git compare develop path/to/file`
-  
+
+- Show Local Branches
+
+  Show only the local branches
+  ```shell
+  git config --global alias.branch-local '!sh -c "git branch -a | grep --ignore-case --regexp 'remotes' --invert-match"'
+  ``` 
