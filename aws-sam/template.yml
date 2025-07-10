@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Local SAM Template for Matheus rambo
+
+Globals:
+  Function:
+    Timeout: 20
+    Runtime: java11
+
+Resources:
+  lambdapolling:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: java11
+      # Here, you define the location of the zip file where is your code
+      CodeUri: /home/sgtcortez/Projects/work/rr-mediamanagement/functions/digitalAssetService/build/distributions/code.zip
+      # Here its the name of the lambda, you will need this name to reference the lambda later when you wanna invoke it for example
+      FunctionName: "LambdaJiraPolling"
+      # The "boot/entry point" function
+      Handler: com.prcs.lambda.media.polling.LambdaJiraPolling::handleRequest
+      Timeout: 1800
+      MemorySize: 1024
+      Environment:
+        Variables:
+          SPRING_PROFILE_ACTIVE: nonprod
+          _JAVA_OPTS: -Xmx1024M -Xms1024M
+          REGION: "us-west-2"
