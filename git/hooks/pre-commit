@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# This hook, will run the project build before we actually do the commit.
+# The idea of this hook is to not commit non working code
+# To use this, just create a symlink to your git repository, 
+
+
+RED='\033[0;31m'
+NO_COLOR='\033[0m'
+GREEN='\033[0;32m' 
+BLUE='\033[0;34m' 
+
+echo -e "${BLUE}[ INFO ]${NO_COLOR} Running \"pre-commit\" hook"
+LOG_FILE=/tmp/precommit.log
+
+# TODO: Check for location of java runtimes. 
+# maybe, we can use the `find` command, usually, the java version directory starts contains: 1.8. 
+# So, we could check for this location and see if we can find the jre.
+
+if [ -e ./build.gradle ]
+then
+    echo -e "${BLUE}[ INFO ]${NO_COLOR} Identified gradle as the build system ..."
+    if [ -e ./gradlew ]
+    then
+        ./gradlew clean build 1>${LOG_FILE} 2>&1
+        if [ $? -eq 0 ]
+        then
+            echo -e "${BLUE}[ INFO ]${NO_COLOR} ${GREEN}Code is safe to push! ${NO_COLOR}"
+            exit 0
+        fi
+
+
+        echo -e "${BLUE}[ ERROR ]${NO_COLOR} ${RED}Code is not safe to push! ${NO_COLOR}Check you build system \"build\" command for more information."
+        exit 1
+    fi
+fi
+if [ -e ./pom.xml ]
+then
+    echo "-e ${BLUE}[ INFO ]${NO_COLOR} Identified maven as the build system ..."
+    if [ -e ./mvnw ]
+    then
+        ./mvnw clean install 1>${LOG_FILE} 2>&1
+        if [ $? -eq 0 ]
+        then
+            echo -e "${BLUE}[ INFO ]${NO_COLOR} ${GREEN}Code is safe to push! ${NO_COLOR}"
+            exit 0            
+        fi
+        echo -e "${BLUE}[ ERROR ]${NO_COLOR} ${RED}Code is not safe to push! ${NO_COLOR}Check you build system \"build\" command for more information."
+        exit 1        
+    fi
+fi
+
+#  Nothing to do 
+
+exit 0
